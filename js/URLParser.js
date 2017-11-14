@@ -6,6 +6,7 @@
 */
 var URL = {
     path:document.location.href, // the current url to parse
+    pathname:document.location.pathname,
     url:[],
     get:function(key){ // this returns the value of the given key (example: '?name=myname') URL.get('name') returns "myname"
         var val = this.path.substr(this.path.indexOf(key) + key.length + 1); // substring path by the given key
@@ -20,10 +21,10 @@ var URL = {
     },
     split:function(delimeter){
         this.url = [];
-        var split_path = this.path.split(delimeter);
-        for(i in split_path){
-            if(i > split_path.length - 3){
-                this.url.push(split_path[i]);
+        var tmp = this.pathname.split(delimeter);
+        for(i in tmp){
+            if(i > 0){
+                this.url.push(tmp[i]);
             }
         }
         return this;
